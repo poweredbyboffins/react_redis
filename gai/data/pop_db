@@ -1,0 +1,1 @@
+python3 ~/redisgraph-bulk-loader/bulk_insert.py EQUITY_ANALYSIS -n stocks.csv -n industry.csv -r revenue_stream.csv

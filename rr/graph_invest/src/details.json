@@ -1,0 +1,16 @@
+{
+    "nodes": [
+      {"id": "Swap", "group": 1,"size": 5},
+      {"id": "Future", "group": 1,"size": 5},
+      {"id": "Bond", "group": 1,"size": 5},
+      {"id": "Mexico", "group": 2,"size": 3},
+      {"id": "Canada", "group": 2,"size": 3}
+            
+    ],
+    "links": [
+      
+      {"source": "Bond", "target": "Mexico", "value": 7},
+      {"source": "Bond", "target": "Canada", "value": 7},
+      {"source": "Swap", "target": "Canada", "value": 7}
+    ]
+  }

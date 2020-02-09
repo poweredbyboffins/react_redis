@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <script src="https://d3js.org/d3.v4.min.js"></script>
+  <style>
+    body {
+      background-image: url(bg.png);
+      background-size: cover;
+      font-family: 'Raleway', sans-serif;
+      font-weight: 400;
+    }
+
+    svg {
+      background-color: rgba(255, 255, 255, 0.8);
+      margin-left: auto;
+      margin-right: auto;
+      display: block;
+      margin-top: 2em;
+    }
+
+    .logo {
+      width: 200px;
+      margin-top: 3em;
+      margin-left: auto;
+      margin-right: auto;
+      display: block;
+    }
+  </style>
+  <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+
+</head>
+
+<body>
+  <div id="svg-container">
+    <svg width="960" height="400"></svg>
+  </div>
+  <img src="rl-logo.png" class="logo" />
+</body>
+<script>
+
+
+
+  var key = 'EQUITY_ANALYSIS';
+  var nodes, links, redisgraph;
+
+  let windowId = 'id' + Math.floor((Math.random() * 10000000));
+  let socket = new WebSocket('ws://localhost:4000/query/' + windowId);
+  socket.onopen = function () {
+
+    socket.onmessage = (msg) => {
+      let data = JSON.parse(msg.data);
+      console.log(data.results);
+      console.log(data.columns);
+    }
+}
+    redisgraph = (query, chunkSize) => {
+      var json=JSON.stringify({ key: key, query: query, chunkSize: chunkSize });
+      socket.send(JSON.stringify({ key: key, query: query, chunkSize: chunkSize }, null, 1));
+    };
+
+
+</script>
+
+</html>
